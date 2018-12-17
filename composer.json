@@ -1,0 +1,28 @@
+{
+    "name": "inetstudio/links",
+    "description": "Package for links",
+    "homepage": "https://github.com/inetstudio/links",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Konstantin Bukin",
+        "email": "bukin@inetstudio.ru"
+      }
+    ],
+    "require": {
+      "inetstudio/widgets": "1.7.*"
+    },
+    "autoload": {
+      "psr-4": {
+        "InetStudio\\Links\\": "src/"
+      }
+    },
+    "extra": {
+      "laravel": {
+        "providers": [
+          "InetStudio\\Links\\Providers\\LinksBindingsServiceProvider",
+          "InetStudio\\Links\\Providers\\LinksServiceProvider"
+        ]
+      }
+    }
+}
