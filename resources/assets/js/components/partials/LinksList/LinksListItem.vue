@@ -22,7 +22,11 @@
         methods: {
             editLink() {
                 window.Admin.vue.stores['links'].commit('setMode', 'edit_list_item');
-                window.Admin.vue.stores['links'].commit('setLink', JSON.parse(JSON.stringify(this.link)));
+
+                let link = JSON.parse(JSON.stringify(this.link));
+                link.isModified = false;
+
+                window.Admin.vue.stores['links'].commit('setLink', link);
 
                 $('#links_list_item_form_modal').modal();
             },

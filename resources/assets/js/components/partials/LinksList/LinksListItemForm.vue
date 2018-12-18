@@ -59,7 +59,7 @@
                                     name = "link_target"
                                     v-bind:checkboxes = "[
                                         {
-                                            value: 'blank',
+                                            value: '_blank',
                                             label: 'Да'
                                         }
                                     ]"

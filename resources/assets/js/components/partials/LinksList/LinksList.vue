@@ -144,7 +144,6 @@
             },
             saveLink() {
                 let storeLink = JSON.parse(JSON.stringify(window.Admin.vue.stores['links'].state.link));
-                storeLink.isModified = false;
                 storeLink.hash = window.hash(storeLink.model);
 
                 let index = this.getLinkIndex(storeLink.model.id);

@@ -2,7 +2,7 @@
 
 return [
 
-    'linkable' => [
+    'links_types' => [
         [
             'text' => 'Категория',
             'value' => 'category',
@@ -45,9 +45,15 @@ return [
         ],
     ],
 
-    'list_types' => [
-        'small_arrow' => 'Маленькие стрелки',
-        'big_arrow' => 'Большие стрелки',
+    'list_styles' => [
+        [
+            'text' => 'Маленькие стрелки',
+            'value' => 'small_arrow',
+        ],
+        [
+            'text' => 'Большие стрелки',
+            'value' => 'big_arrow',
+        ],
     ],
 
 ];
