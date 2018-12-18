@@ -229,6 +229,8 @@
                 $(this.$refs.modal).on('hide.bs.modal', function () {
                     component.links = [];
                     component.model = component.getDefaultModel();
+
+                    $('#links_list_style').val(null).trigger('change');
                 });
             });
         },
