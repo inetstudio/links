@@ -28,6 +28,7 @@ class SaveLinkRequest extends FormRequest implements SaveLinkRequestContract
     public function messages(): array
     {
         return [
+            /*
             'type.required' => 'Поле «Тип ссылки» обязательно для заполнения',
             'type.string' => 'Поле «Тип ссылки» должно содержать текстовое значение',
 
@@ -41,6 +42,7 @@ class SaveLinkRequest extends FormRequest implements SaveLinkRequestContract
             'additional_info.title.required' => 'Поле «Заголовок» обязательно для заполнения',
 
             'additional_info.path.required' => 'Поле «Ссылка» обязательно для заполнения',
+            */
         ];
     }
 
@@ -52,11 +54,13 @@ class SaveLinkRequest extends FormRequest implements SaveLinkRequestContract
     public function rules(): array
     {
         return [
+            /*
             'type' => 'required|string',
             'linkable_type' => 'required_unless:linkable_id,0|string|max:255',
             'linkable_id' => 'required|integer',
             'additional_info.title' => 'required',
             'additional_info.path' => 'required',
+            */
         ];
     }
 }
