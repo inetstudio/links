@@ -4,7 +4,7 @@
             <span>{{ link.model.additional_info.title }}</span>
         </td>
         <td width="10%">
-            <a href="#" class="btn btn-xs btn-default edit-link m-r-xs" v-on:click.prevent.stop="editLink"><i class="fa fa-pencil"></i></a>
+            <a href="#" class="btn btn-xs btn-default edit-link m-r-xs" v-on:click.prevent.stop="editLink"><i class="fa fa-pencil-alt"></i></a>
             <a href="#" class="btn btn-xs btn-danger delete-link" v-on:click.prevent.stop="removeLink"><i class="fa fa-times"></i></a>
         </td>
     </tr>
