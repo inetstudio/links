@@ -138,7 +138,7 @@ window.tinymce.PluginManager.add('links', function (editor) {
                     window.Admin.vue.stores['links'].commit('setLink', linkData.form.link);
                 } else {
                     linkData.form.events.linkSaved = function (link) {
-                        let newTab = (typeof link.model.additional_info.target[0] !== 'undefined' && link.model.additional_info.target[0] === 'blank') ? 'target="_blank"' : '',
+                        let newTab = (typeof link.model.additional_info.target[0] !== 'undefined' && link.model.additional_info.target[0] === '_blank') ? 'target="_blank"' : '',
                             text = content || link.model.additional_info.title;
 
                         editor.execCommand('mceReplaceContent', false, '<a href="'+link.model.additional_info.path+'" '+newTab+' data-type="links.link" data-id="'+link.model.id+'" class="'+(link.model.additional_info.cssClass || '')+'">'+text+'</a>');
