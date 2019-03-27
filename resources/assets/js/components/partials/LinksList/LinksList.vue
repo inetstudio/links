@@ -7,23 +7,21 @@
                     <h1 class="modal-title">Ссылки</h1>
                 </div>
                 <div class="modal-body">
-                    <div class="ibox-content form-horizontal" v-bind:class="{ 'sk-loading': options.loading }">
+                    <div class="ibox-content" v-bind:class="{ 'sk-loading': options.loading }">
                         <div class="sk-spinner sk-spinner-double-bounce">
                             <div class="sk-double-bounce1"></div>
                             <div class="sk-double-bounce2"></div>
                         </div>
-                        <div class="row">
-                            <base-dropdown
-                                label = "Оформление"
-                                name = "links_list_style"
-                                v-bind:attributes = "{
-                                    'data-placeholder': 'Выберите тип оформления'
-                                }"
-                                v-bind:options = "options.listStyles"
-                                v-bind:selected.sync="model.params.style"
-                            />
-                        </div>
-                        <a href="#" class="btn btn-sm btn-primary m-b-lg add_link" v-on:click.prevent="addLink">Добавить</a>
+                        <base-dropdown
+                            label = "Оформление"
+                            name = "links_list_style"
+                            v-bind:attributes = "{
+                                'data-placeholder': 'Выберите тип оформления'
+                            }"
+                            v-bind:options = "options.listStyles"
+                            v-bind:selected.sync="model.params.style"
+                        />
+                        <a href="#" class="btn btn-xs btn-primary m-b-lg add_link" v-on:click.prevent="addLink">Добавить</a>
                         <table class="table table-hover links-list">
                             <tbody>
 

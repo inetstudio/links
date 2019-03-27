@@ -7,71 +7,69 @@
                     <h1 class="modal-title">Ссылка</h1>
                 </div>
                 <div class="modal-body">
-                    <div class="ibox-content form-horizontal" v-bind:class="{ 'sk-loading': options.loading }">
+                    <div class="ibox-content" v-bind:class="{ 'sk-loading': options.loading }">
                         <div class="sk-spinner sk-spinner-double-bounce">
                             <div class="sk-double-bounce1"></div>
                             <div class="sk-double-bounce2"></div>
                         </div>
-                        <div class="row">
-                            <base-dropdown
-                                label = "Тип ссылки"
-                                name = "link_type"
+                        <base-dropdown
+                            label = "Тип ссылки"
+                            name = "link_type"
+                            v-bind:attributes = "{
+                                'data-placeholder': 'Выберите тип'
+                            }"
+                            v-bind:options = "options.linksTypes"
+                            v-bind:selected.sync="link.model.type"
+                        />
+
+                        <div class="suggestions has-warning" v-show="showSuggestions">
+                            <base-autocomplete
+                                name = "link_suggestion"
                                 v-bind:attributes = "{
-                                    'data-placeholder': 'Выберите тип'
+                                    'data-search': '',
+                                    'placeholder': 'Введите название страницы',
+                                    'autocomplete': 'off'
                                 }"
-                                v-bind:options = "options.linksTypes"
-                                v-bind:selected.sync="link.model.type"
+                                v-on:select="suggestionSelect"
+                                v-bind:value.sync = "link.model.additional_info.suggestion"
                             />
+                        </div>
 
-                            <div class="suggestions has-warning" v-show="showSuggestions">
-                                <base-autocomplete
-                                    name = "link_suggestion"
-                                    v-bind:attributes = "{
-                                        'data-search': '',
-                                        'placeholder': 'Введите название страницы',
-                                        'autocomplete': 'off'
-                                    }"
-                                    v-on:select="suggestionSelect"
-                                    v-bind:value.sync = "link.model.additional_info.suggestion"
-                                />
-                            </div>
-
-                            <div class="link-item-data" v-show="link.model.type">
-                                <div class="link-item-additional">
-                                    <base-input-text
-                                        label = "Заголовок"
-                                        name = "link_title"
-                                        v-bind:value.sync = "link.model.additional_info.title"
-                                    />
-
-                                    <base-input-text
-                                        label = "Ссылка"
-                                        name = "link_path"
-                                        v-bind:attributes = "{
-                                            'disabled': (link.model.type !== 'link'),
-                                        }"
-                                        v-bind:value.sync = "link.model.additional_info.path"
-                                    />
-                                </div>
-
-                                <base-checkboxes
-                                    label = "Открывать в новой вкладке"
-                                    name = "link_target"
-                                    v-bind:checkboxes = "[
-                                        {
-                                            value: '_blank',
-                                            label: 'Да'
-                                        }
-                                    ]"
-                                    v-bind:selected.sync = "link.model.additional_info.target"
+                        <div class="link-item-data" v-show="link.model.type">
+                            <div class="link-item-additional">
+                                <base-input-text
+                                    label = "Заголовок"
+                                    name = "link_title"
+                                    v-bind:value.sync = "link.model.additional_info.title"
                                 />
 
                                 <base-input-text
-                                    label = "CSS класс"
-                                    name = "link_css"
-                                    v-bind:value.sync = "link.model.additional_info.cssClass"
+                                    label = "Ссылка"
+                                    name = "link_path"
+                                    v-bind:attributes = "{
+                                        'disabled': (link.model.type !== 'link'),
+                                    }"
+                                    v-bind:value.sync = "link.model.additional_info.path"
                                 />
                             </div>
+
+                            <base-checkboxes
+                                label = "Открывать в новой вкладке"
+                                name = "link_target"
+                                v-bind:checkboxes = "[
+                                    {
+                                        value: '_blank',
+                                        label: 'Да'
+                                    }
+                                ]"
+                                v-bind:selected.sync = "link.model.additional_info.target"
+                            />
+
+                            <base-input-text
+                                label = "CSS класс"
+                                name = "link_css"
+                                v-bind:value.sync = "link.model.additional_info.cssClass"
+                            />
                         </div>
                     </div>
                 </div>
