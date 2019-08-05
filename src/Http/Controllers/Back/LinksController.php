@@ -3,7 +3,7 @@
 namespace InetStudio\Links\Http\Controllers\Back;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use InetStudio\AdminPanel\Base\Http\Controllers\Controller;
 use InetStudio\Links\Contracts\Http\Requests\Back\SaveLinkRequestContract;
 use InetStudio\Links\Contracts\Http\Controllers\Back\LinksControllerContract;
 use InetStudio\Links\Contracts\Http\Responses\Back\Links\SaveResponseContract;
