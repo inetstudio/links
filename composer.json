@@ -15,14 +15,16 @@
     },
     "autoload": {
       "psr-4": {
-        "InetStudio\\Links\\": "src/"
+        "InetStudio\\LinksPackage\\": "package/src",
+        "InetStudio\\LinksPackage\\Links\\": "entities/links/src"
       }
     },
     "extra": {
       "laravel": {
         "providers": [
-          "InetStudio\\Links\\Providers\\LinksBindingsServiceProvider",
-          "InetStudio\\Links\\Providers\\LinksServiceProvider"
+          "InetStudio\\LinksPackage\\Providers\\ServiceProvider",
+          "InetStudio\\LinksPackage\\Links\\Providers\\BindingsServiceProvider",
+          "InetStudio\\LinksPackage\\Links\\Providers\\ServiceProvider"
         ]
       }
     }
