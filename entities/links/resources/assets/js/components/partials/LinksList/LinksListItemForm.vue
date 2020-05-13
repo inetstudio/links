@@ -14,10 +14,11 @@
                         </div>
                         <base-dropdown
                             label = "Тип ссылки"
-                            name = "link_type"
-                            v-bind:attributes = "{
-                                'data-placeholder': 'Выберите тип'
-                            }"
+                            v-bind:attributes="{
+                                    placeholder: 'Выберите тип ссылки',
+                                    clearable: false,
+                                    reduce: option => option.value
+                                }"
                             v-bind:options = "options.linksTypes"
                             v-bind:selected.sync="link.model.link_type"
                         />
@@ -141,7 +142,11 @@
                     this.link = _.merge(JSON.parse(JSON.stringify(window.Admin.vue.stores['links'].state.emptyLink)), currentData);
                 }
 
-                let routeName = $('#link_type').select2().find(':selected').attr('data-suggestions'),
+              let typeIndex = _.findIndex(this.options.linksTypes, function (type) {
+                return type.value === newValue;
+              });
+
+                let routeName = (typeIndex > -1) ? this.options.linksTypes[typeIndex].attributes['data-suggestions'] : undefined,
                     suggestionsURL = (typeof routeName !== 'undefined') ? String(route(routeName)) : '';
 
                 if (suggestionsURL) {

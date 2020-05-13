@@ -14,11 +14,12 @@
                         </div>
                         <base-dropdown
                             label = "Оформление"
-                            name = "links_list_style"
-                            v-bind:attributes = "{
-                                'data-placeholder': 'Выберите тип оформления'
-                            }"
-                            v-bind:options = "options.listStyles"
+                            v-bind:attributes="{
+                                    placeholder: 'Выберите тип оформления',
+                                    clearable: false,
+                                    reduce: option => option.value
+                                }"
+                            v-bind:options="options.listStyles"
                             v-bind:selected.sync="model.params.style"
                         />
                         <a href="#" class="btn btn-xs btn-primary m-b-lg add_link" v-on:click.prevent="addLink">Добавить</a>
@@ -121,7 +122,7 @@
             addLink() {
                 window.Admin.vue.stores['links'].commit('setMode', 'add_list_item');
                 window.Admin.vue.stores['links'].commit('setLink', {});
-                
+
                 $('#links_list_item_form_modal').modal();
             },
             removeLink(payload) {

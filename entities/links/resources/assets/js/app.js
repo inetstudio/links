@@ -2,7 +2,7 @@ require('./plugins/tinymce/plugins/links');
 
 require('./stores/links');
 
-require('../../../../../../widgets/resources/assets/js/mixins/widget');
+require('../../../../../../widgets/entities/widgets/resources/assets/js/mixins/widget');
 
 Vue.component('LinksList', require('./components/partials/LinksList/LinksList.vue').default);
 Vue.component('LinksListItem', require('./components/partials/LinksList/LinksListItem.vue').default);

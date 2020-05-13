@@ -4,32 +4,22 @@ window.tinymce.PluginManager.add('links', function (editor) {
 
         switch (componentType) {
             case 'list':
-                if (typeof window.Admin.vue.modulesComponents.$refs['links_LinksList'] == 'undefined') {
-                    window.Admin.vue.modulesComponents.modules.links.components = _.union(window.Admin.vue.modulesComponents.modules.links.components, [
-                        {
-                            name: 'LinksList',
-                            data: widgetData
-                        }
-                    ]);
-                } else {
-                    component = window.Admin.vue.modulesComponents.$refs['links_LinksList'][0];
+                component = window.Admin.vue.helpers.getVueComponent('links', 'LinksList');
 
+                if (component) {
                     component.$data.events.widgetSaved = widgetData.widget.events.widgetSaved;
                     component.$data.model.id = widgetData.model.id;
+                } else {
+                    window.Admin.vue.helpers.initComponent('links', 'LinksList', widgetData);
                 }
             case 'link':
-                if (typeof window.Admin.vue.modulesComponents.$refs['links_LinksListItemForm'] == 'undefined') {
-                    window.Admin.vue.modulesComponents.modules.links.components = _.union(window.Admin.vue.modulesComponents.modules.links.components, [
-                        {
-                            name: 'LinksListItemForm',
-                            data: linkData
-                        }
-                    ]);
-                } else {
-                    component = window.Admin.vue.modulesComponents.$refs['links_LinksListItemForm'][0];
+                component = window.Admin.vue.helpers.getVueComponent('links', 'LinksListItemForm');
 
+                if (component) {
                     component.$data.saveTarget = linkData.form.saveTarget;
                     component.$data.events.linkSaved = linkData.form.events.linkSaved;
+                } else {
+                    window.Admin.vue.helpers.initComponent('links', 'LinksListItemForm', linkData);
                 }
         }
     }
