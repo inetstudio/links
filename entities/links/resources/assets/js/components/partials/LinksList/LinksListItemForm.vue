@@ -15,10 +15,11 @@
                         <base-dropdown
                             label = "Тип ссылки"
                             v-bind:attributes="{
-                                    placeholder: 'Выберите тип ссылки',
-                                    clearable: false,
-                                    reduce: option => option.value
-                                }"
+                                label: 'text',
+                                placeholder: 'Выберите тип ссылки',
+                                clearable: false,
+                                reduce: option => option.value
+                            }"
                             v-bind:options = "options.linksTypes"
                             v-bind:selected.sync="link.model.link_type"
                         />

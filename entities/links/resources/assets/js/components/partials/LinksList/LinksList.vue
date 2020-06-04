@@ -15,10 +15,11 @@
                         <base-dropdown
                             label = "Оформление"
                             v-bind:attributes="{
-                                    placeholder: 'Выберите тип оформления',
-                                    clearable: false,
-                                    reduce: option => option.value
-                                }"
+                                label: 'text',
+                                placeholder: 'Выберите тип оформления',
+                                clearable: false,
+                                reduce: option => option.value
+                            }"
                             v-bind:options="options.listStyles"
                             v-bind:selected.sync="model.params.style"
                         />
