@@ -35,7 +35,7 @@ class SaveResponse implements SaveResponseContract
      */
     public function toResponse($request)
     {
-        $id = $request->route('id', 0);
+        $id = $request->route('link', 0);
         $data = $request->all();
 
         $item = $this->resourceService->save($data, $id);

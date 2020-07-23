@@ -35,7 +35,7 @@ class DestroyResponse implements DestroyResponseContract
      */
     public function toResponse($request)
     {
-        $id = $request->route('id');
+        $id = $request->route('link');
 
         $result = $this->resourceService->destroy($id);
 
