@@ -4,22 +4,22 @@ window.tinymce.PluginManager.add('links', function (editor) {
 
         switch (componentType) {
             case 'list':
-                component = window.Admin.vue.helpers.getVueComponent('links', 'LinksList');
+                component = window.Admin.vue.helpers.getVueComponent('links', 'LinksListWidget');
 
                 if (component) {
                     component.$data.events.widgetSaved = widgetData.widget.events.widgetSaved;
                     component.$data.model.id = widgetData.model.id;
                 } else {
-                    window.Admin.vue.helpers.initComponent('links', 'LinksList', widgetData);
+                    window.Admin.vue.helpers.initComponent('links', 'LinksListWidget', widgetData);
                 }
             case 'link':
-                component = window.Admin.vue.helpers.getVueComponent('links', 'LinksListItemForm');
+                component = window.Admin.vue.helpers.getVueComponent('links', 'LinksListWidgetItemForm');
 
                 if (component) {
                     component.$data.saveTarget = linkData.form.saveTarget;
                     component.$data.events.linkSaved = linkData.form.events.linkSaved;
                 } else {
-                    window.Admin.vue.helpers.initComponent('links', 'LinksListItemForm', linkData);
+                    window.Admin.vue.helpers.initComponent('links', 'LinksListWidgetItemForm', linkData);
                 }
         }
     }
