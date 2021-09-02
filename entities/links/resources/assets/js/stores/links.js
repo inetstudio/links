@@ -1,3 +1,5 @@
+import Vuex from 'vuex';
+
 window.Admin.vue.stores['links'] = new Vuex.Store({
     state: {
         emptyLink: {

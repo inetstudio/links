@@ -1,3 +1,5 @@
+import Vuex from 'vuex';
+
 window.Admin.vue.stores['links_package_links'] = new Vuex.Store({
   state: {
     link: {},

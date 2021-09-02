@@ -1,3 +1,6 @@
+import Vue from 'vue';
+import {links} from './package/links';
+
 require('./plugins/tinymce/plugins/links');
 
 require('./stores/links');
@@ -13,5 +16,4 @@ Vue.component('LinksListWidget', require('./components/partials/LinksListWidget/
 Vue.component('LinksListWidgetItem', require('./components/partials/LinksListWidget/LinksListWidgetItem.vue').default);
 Vue.component('LinksListWidgetItemForm', require('./components/partials/LinksListWidget/LinksListWidgetItemForm.vue').default);
 
-let links = require('./package/links');
 links.init();

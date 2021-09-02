@@ -1,6 +1,4 @@
-let links = {};
-
-links.init = function () {
+export let links = {
+  init: function () {
+  }
 };
-
-module.exports = links;
