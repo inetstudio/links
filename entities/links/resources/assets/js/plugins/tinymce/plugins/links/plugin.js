@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2';
+
 window.tinymce.PluginManager.add('links', function (editor) {
     function initLinksComponents(componentType, widgetData, linkData) {
         let component = null;
@@ -80,10 +82,10 @@ window.tinymce.PluginManager.add('links', function (editor) {
                         $('#links_list_modal').modal();
                     });
                 } else {
-                    swal({
+                    Swal.fire({
                         title: "Ошибка",
                         text: "Необходимо выбрать виджет-ссылки",
-                        type: "error"
+                        icon: "error"
                     });
 
                     return false;

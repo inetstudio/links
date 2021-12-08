@@ -13,6 +13,9 @@
 </template>
 
 <script>
+  import hash from 'object-hash';
+  import Swal from 'sweetalert2';
+
   export default {
     name: 'LinksList',
     props: {
@@ -60,13 +63,13 @@
 
           component.links = _.map(_.cloneDeep(newValues), function (link) {
             if (link.hasOwnProperty('model')) {
-              link.hash = window.hash(link.model);
+              link.hash = hash(link.model);
 
               return link;
             }
 
             return {
-              hash: window.hash(link),
+              hash: hash(link),
               model: link
             };
           });
@@ -87,9 +90,9 @@
       remove(payload) {
         let component = this;
 
-        swal({
+        Swal.fire({
           title: 'Вы уверены?',
-          type: 'warning',
+          icon: 'warning',
           showCancelButton: true,
           cancelButtonText: 'Отмена',
           confirmButtonColor: '#DD6B55',
@@ -109,7 +112,7 @@
       save (storeLink) {
         let component = this;
 
-        storeLink.hash = window.hash(storeLink.model);
+        storeLink.hash = hash(storeLink.model);
         let index = _.findIndex(component.links, function(link) {
           return link.model.id === storeLink.model.id;
         });

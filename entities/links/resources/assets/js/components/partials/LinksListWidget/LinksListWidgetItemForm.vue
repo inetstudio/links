@@ -86,6 +86,8 @@
 </template>
 
 <script>
+  import hash from 'object-hash';
+
     export default {
         name: 'LinksListWidgetItemForm',
         props: {
@@ -123,7 +125,7 @@
                     this.link.isModified = ! (! newValue
                         || typeof newValue.id === 'undefined'
                         || typeof oldValue.id === 'undefined'
-                        || this.link.hash === window.hash(newValue));
+                        || this.link.hash === hash(newValue));
                 },
                 deep: true
             },
@@ -199,7 +201,7 @@
                                 errors: {},
                                 isModified: false,
                                 model: response.data,
-                                hash: window.hash(response.data)
+                                hash: hash(response.data)
                             };
 
                             $('#link_type').val(component.link.model.link_type).trigger('change');

@@ -1,6 +1,7 @@
-import Vuex from 'vuex';
+import hash from 'object-hash';
+import { v4 as uuidv4 } from 'uuid';
 
-window.Admin.vue.stores['links'] = new Vuex.Store({
+window.Admin.vue.stores['links'] = new window.Vuex.Store({
     state: {
         emptyLink: {
             model: {
@@ -28,10 +29,10 @@ window.Admin.vue.stores['links'] = new Vuex.Store({
     mutations: {
         setLink (state, link) {
             let emptyLink = JSON.parse(JSON.stringify(state.emptyLink));
-            emptyLink.model.id = UUID.generate();
+            emptyLink.model.id = uuidv4();
 
             let resultLink = _.merge(emptyLink, link);
-            resultLink.hash = window.hash(resultLink.model);
+            resultLink.hash = hash(resultLink.model);
 
             state.link = resultLink;
         },

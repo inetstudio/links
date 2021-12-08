@@ -66,6 +66,8 @@
 </template>
 
 <script>
+  import hash from 'object-hash';
+
   export default {
     name: 'LinksListItemForm',
     data() {
@@ -92,7 +94,7 @@
         handler: function(newValue) {
           let component = this;
 
-          component.link.hash = window.hash(newValue);
+          component.link.hash = hash(newValue);
         },
         deep: true
       },

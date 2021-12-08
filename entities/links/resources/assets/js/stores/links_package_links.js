@@ -1,6 +1,7 @@
-import Vuex from 'vuex';
+import hash from 'object-hash';
+import { v4 as uuidv4 } from 'uuid';
 
-window.Admin.vue.stores['links_package_links'] = new Vuex.Store({
+window.Admin.vue.stores['links_package_links'] = new window.Vuex.Store({
   state: {
     link: {},
     mode: '',
@@ -27,7 +28,7 @@ window.Admin.vue.stores['links_package_links'] = new Vuex.Store({
       let linkCopy = _.cloneDeep(link);
 
       linkCopy.model = (linkCopy.hasOwnProperty('model')) ? linkCopy.model : linkCopy;
-      linkCopy.hash = window.hash(linkCopy.model);
+      linkCopy.hash = hash(linkCopy.model);
 
       state.link = linkCopy;
     },
@@ -38,7 +39,7 @@ window.Admin.vue.stores['links_package_links'] = new Vuex.Store({
   actions: {
     newLink (context) {
       let link = context.getters.emptyLink;
-      link.model.id = UUID.generate();
+      link.model.id = uuidv4();
 
       context.commit('link', link);
     },

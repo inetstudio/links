@@ -49,6 +49,9 @@
 </template>
 
 <script>
+  import hash from 'object-hash';
+    import Swal from 'sweetalert2';
+
     export default {
         name: 'LinksListWidget',
         data() {
@@ -116,7 +119,7 @@
                 let url = route('back.admin-panel.config.get', 'links.list_styles');
 
                 axios.post(url).then(response => {
-                    component.options.listStyles = response.data;
+                    component.options.listStyles = (! _.isArray(response.data)) ? [] : response.data;
                     component.options.loading = false;
                 });
             },
@@ -127,9 +130,9 @@
                 $('#links_list_item_form_modal').modal();
             },
             removeLink(payload) {
-                swal({
+              Swal.fire({
                     title: "Вы уверены?",
-                    type: "warning",
+                    icon: "warning",
                     showCancelButton: true,
                     cancelButtonText: "Отмена",
                     confirmButtonColor: "#DD6B55",
@@ -144,7 +147,7 @@
             },
             saveLink() {
                 let storeLink = JSON.parse(JSON.stringify(window.Admin.vue.stores['links'].state.link));
-                storeLink.hash = window.hash(storeLink.model);
+                storeLink.hash = hash(storeLink.model);
 
                 let index = this.getLinkIndex(storeLink.model.id);
 
