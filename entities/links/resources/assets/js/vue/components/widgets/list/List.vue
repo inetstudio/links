@@ -3,17 +3,10 @@
     <template v-if="isReady">
       <slot name="additionalFields" v-bind:item="item" />
 
-      <base-dropdown
-        v-if="options.listStyles.length > 0"
-        label = "Оформление"
-        v-bind:attributes="{
-          label: 'text',
-          placeholder: 'Выберите тип оформления',
-          clearable: false,
-          reduce: option => option.value
-        }"
-        v-bind:options="options.listStyles"
-        v-bind:selected.sync="item.model.params.style"
+      <base-input-text
+        label = "Заголовок"
+        name = "title"
+        v-bind:value.sync = "item.model.params.title"
       />
 
       <div class="form-group row">
@@ -57,60 +50,42 @@
         },
         events: {
           itemLoaded: function (component) {
-            let configUrl = route('back.admin-panel.config.get', 'links.list_styles');
-
             component.startLoading();
 
+            if (component.item.model.params.ids.length === 0) {
+              component.stopLoading();
+              component.ready();
+
+              return;
+            }
+
+            let linksUrl = route('back.links.get').toString();
+            let data = {
+              params: {
+                ids: component.item.model.params.ids
+              }
+            };
+
             axios
-              .post(configUrl)
+              .get(linksUrl, data)
               .then(response => {
-                component.options.listStyles = (! _.isArray(response.data)) ? [] : response.data;
+                let links = [];
+                let data = response.data;
 
-                $('#links_list_style').val(component.item.model.params.style).trigger('change');
-
-                if (component.item.model.params.ids.length === 0) {
-                  component.stopLoading();
-                  component.ready();
-
-                  return;
-                }
-
-                let linksUrl = route('back.links.get').toString();
-                let data = {
-                  params: {
-                    ids: component.item.model.params.ids
-                  }
-                };
-
-                axios.get(linksUrl, data)
-                  .then(response => {
-                    let links = [];
-                    let data = response.data;
-
-                    data.forEach(function (linkData) {
-                      links.push({
-                        item: {
-                          hash: hash(linkData.model),
-                          isModified: false,
-                          model: linkData.model,
-                        }
-                      });
-                    });
-
-                    component.links = links;
-
-                    component.stopLoading();
-                    component.ready();
+                data.forEach(function (linkData) {
+                  links.push({
+                    item: {
+                      hash: hash(linkData.model),
+                      isModified: false,
+                      model: linkData.model,
+                    }
                   });
-                })
-              .catch(error => {
-                component.stopLoading();
-
-                Swal.fire({
-                  title: "Ошибка",
-                  text: "При загрузке виджета произошла ошибка",
-                  icon: "error"
                 });
+
+                component.links = links;
+
+                component.stopLoading();
+                component.ready();
               });
           }
         }
@@ -121,10 +96,10 @@
         return {
           widget_name: 'links-package_links_widgets_list',
           category: 'links.list',
-          view: 'admin.module.links::front.partials.content.links_list_widget',
+          view: 'inetstudio.links-package.links::front.partials.content.links_list_widget',
           params: {
             ids: [],
-            style: ''
+            title: ''
           }
         };
       },
