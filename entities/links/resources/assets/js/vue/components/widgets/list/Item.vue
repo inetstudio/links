@@ -53,8 +53,8 @@
                 }
               },
               {
-                adaptive: true,
                 height: 'auto',
+                scrollable: true,
                 minWidth: 800
               }
           );
